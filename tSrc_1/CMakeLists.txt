@@ -1,0 +1,28 @@
+cmake_minimum_required (VERSION 2.1)
+project(main)
+
+SET(CMAKE_C_COMPILER, g++)
+
+file(GLOB ALL_HEAD_PATH_0 ./lib/*)
+file(GLOB ALL_HEAD_PATH_1 ./lib/*/*)
+file(GLOB ALL_HEAD_PATH_2 ./lib/*/*/*)
+SET(ALL_HEAD_PATH ${ALL_HEAD_PATH_0} ${ALL_HEAD_PATH_1} ${ALL_HEAD_PATH_2})
+foreach(HEAD_PATH ${ALL_HEAD_PATH})
+    #message(${HEAD_PATH})
+    IF (IS_DIRECTORY ${HEAD_PATH})
+	message(${HEAD_PATH})
+        include_directories(${HEAD_PATH})
+    ENDIF(IS_DIRECTORY ${HEAD_PATH})
+endforeach(HEAD_PATH)
+#include_directories(${ALL_HEAD_PATH})
+#file(GLOB ALL_HEAD_PATH_0 ./lib/*)
+#file(GLOB ALL_HEAD_PATH_1 ./lib/*/*)
+#file(GLOB ALL_HEAD_PATH_2 ./lib/*/*/*)
+#file(GLOB_RECURSE HEADER_FILES lib/*.h)
+#message(${ALL_FILE_PATH})
+#include_directories(${ALL_HEAD_PATH_0},${ALL_HEAD_PATH_1},${ALL_HEAD_PATH_2})
+
+add_subdirectory(src bin)
+SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR})
+
+#SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR})
